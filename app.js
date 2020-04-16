@@ -10,6 +10,7 @@ const usersRouter = require('./routes/users');
 const app = express();
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+server.listen(3001)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,11 +31,15 @@ app.use(function(req, res, next) {
 });
 
 io.on('connection', socket => {
-  console.log('和客户端建立连接-'+socket.id)
+  socket.emit('news', {hello: 'world'})
+  console.log("socket 链接 socketid=", socket.id)
 
-  socket.on('message', (data) => {
+  socket.on('message', data => {
     console.log(data)
-    io.emit('server-message', data)
+  })
+
+  socket.on('private message', (from, msg) => {
+    console.log('I received a private message By' + from+'saying+' + msg)
   })
 
   socket.on('disconnect', () => {

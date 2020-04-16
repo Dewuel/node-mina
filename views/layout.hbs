@@ -8,9 +8,15 @@
 
 <body>
   {{{body}}}
-  <script src="../socket.io/socket.io.js"></script>
+  <script src="/js/socket.io.js"></script>
   <script>
-    var socket = io();
+    const socket = io.connect('http://127.0.0.1:3001');
+    socket.on('news', data => {
+      console.log(data)
+      socket.emit('message', {my: 'data'})
+    })
+
+    socket.emit('private message', {msg: 'nihao'})
   </script>
 </body>
 
