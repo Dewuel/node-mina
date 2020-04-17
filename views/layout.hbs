@@ -10,13 +10,11 @@
   {{{body}}}
   <script src="/js/socket.io.js"></script>
   <script>
-    const socket = io.connect('http://127.0.0.1:3001');
-    socket.on('news', data => {
+    const socket = io('http://127.0.0.1:3001');
+    socket.emit('message', {hello: 'world'})
+    socket.on('my message', data => {
       console.log(data)
-      socket.emit('message', {my: 'data'})
     })
-
-    socket.emit('private message', {msg: 'nihao'})
   </script>
 </body>
 
