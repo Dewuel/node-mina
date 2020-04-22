@@ -1,0 +1,35 @@
+{
+  "cityList": [
+    {
+      "id": "sy",
+      "city_name": "三亚"
+    },
+    {
+      "id": "hk",
+      "city_name": "海口"
+    },{
+      "id": "cm",
+      "city_name": "澄迈"
+    },
+    {
+      "id": "qz",
+      "city_name": "琼中"
+    },
+    {
+      "id": "ls",
+      "city_name": "陵水"
+    },
+    {
+      "id": "ld",
+      "city_name": "乐东"
+    },
+    {
+      "id": "dz",
+      "city_name": "儋州"
+    },
+    {
+      "id": "wzs",
+      "city_name": "五指山"
+    }
+  ]
+}

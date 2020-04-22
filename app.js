@@ -3,11 +3,32 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+// const cluster = require('cluster')
+// const numCPUs = require('os').cpus.length;
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const houseRouter = require('./routes/house')
 
 const app = express();
+
+// if(cluster.isMaster){
+//   console.log(`主进程${process.pid} 正在运行`)
+
+//   for(let i = 0; i < numCPUs; i++){
+//     console.log(i)
+//     cluster.fork()
+//   } 
+//   cluster.on('exit', (work, code, sign) => {
+//     console.log(`工作进程${work.process.pid}已退出`)
+//   })
+// } else {
+//   app.get('/tc', (req, res) => {
+//     res.status(200).send('hello')
+//   })
+//   console.log(`工作进程${process.pid}已启动`)
+// }
+
 
 require('./socket/chat')(app)
 // view engine setup
@@ -22,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/house', houseRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
