@@ -16,6 +16,9 @@ class UserService {
 
   static async getPhone(data, token) {
     if (!token) return ResultVo.fail(10001, ResultEnum[10001])
+    if(Token.isExpiresIn(token, mina.tokenSecret)){
+      return ResultVo.fail(10002, ResultEnum[10002])
+    }
     let tokenData
     try {
       tokenData = Token.verifyToken(token, mina.tokenSecret)
@@ -37,7 +40,7 @@ class UserService {
         id: tokenData.id
       }
     });
-    return ResultVo.success({phone: resData.purePhoneNumber})
+    return ResultVo.success({ phone: resData.purePhoneNumber })
   }
 
   static async findById(id, attr) {
@@ -61,7 +64,7 @@ class UserService {
         exclude: ['createdAt', 'updatedAt']
       }
     });
-    const token = Token.genToken({ id: res[0].id, openid: res[0].openid }, mina.tokenSecret)
+    const token = Token.genToken({ id: res[0].id, openid: res[0].openid }, mina.tokenSecret, mina.expiration)
 
     const response = {
       id: res[0].id,

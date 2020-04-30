@@ -10,6 +10,10 @@ class HouseService{
     }
     return ResultVo.success(response)
   }
+
+  static async detail(){
+    
+  }
 }
 
 module.exports = HouseService
