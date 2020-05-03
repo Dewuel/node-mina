@@ -13,4 +13,9 @@ router.get('/detail/:id', async (req, res) => {
   res.status(200).json(data)
 })
 
+router.get('/album', async (req, res) => {
+  const data = await HouseService.album();
+  res.status(200).json(data);
+})
+
 module.exports = router
