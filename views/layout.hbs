@@ -9,13 +9,7 @@
 <body>
   {{{body}}}
   <script src="/js/socket.io.js"></script>
-  <script>
-    const socket = io('http://127.0.0.1:3001');
-    socket.emit('message', {hello: 'world'})
-    socket.on('my message', data => {
-      console.log(data)
-    })
-  </script>
+  <script src="/js/client.js"></script>
 </body>
 
 </html>
